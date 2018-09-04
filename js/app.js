@@ -57,22 +57,43 @@ Player.prototype.render = function() {
 };
 
 //player control settings
-player.prototype.render = function()
-
-
-
-
-
-
-
-
-
+player.prototype.handleInput = function(dt) {
+    switch (dt) {
+        case "up":
+            //prevents player from scrolling offscreen upwards
+        if (this.y > 0) {
+            this.y -= 50;
+        }
+        break;
+        case "down":
+            //prevents player from scrolling offscreen downwards
+        if (this.y < 50 * 8) {
+            this.y += 50;
+        }
+        break;
+        case "left":
+            //prevents player from scrolling offscreen to the left
+         if (this.x < 0) {
+            this.x -= 50;  
+         }
+        break;
+        case "right":
+            //prevents player from scrolling offscreen to the right
+         if (this.x < 50 * 8) {
+            this.x += 50; 
+         }
+         break;
+    }
+};
+         
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-
-
+var allEnemies = [ new Enemy(-200, 65), new Enemy(-150, 145), new Enemy(-100, 230),
+                  new Enemy(10, 65), new Enemy(25, 145), new Enemy(40, 230)];
+//Draws player
+var player = new Player();
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
